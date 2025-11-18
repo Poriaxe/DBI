@@ -29,7 +29,7 @@ cd "Pfad\zu\deinem\Projektordner"
 
 Einmalig: Abhängigkeiten installieren
 
-Bashnpm install
+npm install
 
 Skript starten – fertig!
 
