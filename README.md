@@ -1,30 +1,79 @@
-# TSK Hierarchie Generator
+Hier ist deine fertige, saubere und professionelle README.md – einfach komplett kopieren und als README.md in deinem Projektordner speichern:
+Markdown# Türk Silahlı Kuvvetleri (TSK) – Hierarchie-Generator  
+**Vollautomatisches Organigramm aus MySQL → SVG + PNG**  
+Projekt von mzema – DBI / WMC 2025  
 
-Dieses Projekt erzeugt ein **Hierarchie-Diagramm der Türkischen Streitkräfte (TSK)** als SVG und PNG aus einer MySQL-Datenbank.
+Ein Node.js-Skript, das die aktuelle Hierarchiestruktur der Türkischen Streitkräfte aus deiner MySQL-Datenbank ausliest und automatisch ein hochwertiges, immer aktuelles Organigramm erstellt.
 
----
+## Projektstruktur
+dbi/
+├─ generateHierarchy.js      ← Haupt-Skript (Startdatei)
+├─ package.json              ← Alle benötigten npm-Pakete
+├─ package-lock.json         ← Fixierte Versionen
+├─ node_modules/             ← Wird automatisch erstellt
+├─ tsk_hierarchie.svg        ← wird automatisch erzeugt (Vektorgrafik)
+├─ tsk_hierarchie.png        ← wird automatisch erzeugt (hochauflösendes Bild)
+└─ README.md                 ← Dieses File
+text## Voraussetzungen
+- Windows, macOS oder Linux  
+- Node.js ≥ 18 (LTS empfohlen)  
+- MySQL-Server erreichbar (lokal oder remote)  
+- Datenbank: `tuerk_streitkraefte`  
+- View: `v_einheiten_baum` mit den Spalten:  
+  `einheit_id`, `name`, `typ`, `waffengattung`, `kommandeur`, `kommandeur_rang`, `uebergeordnete_einheit`, `ebene`
 
-## 📦 Voraussetzungen
+## Installation & Start (für jeden – 100 % universell)
 
-1. **Node.js** (Version 16 oder höher empfohlen)  
-2. **MySQL**-Datenbank  
-3. Node.js-Pakete (werden über `npm install` installiert)  
+1. Öffne CMD / PowerShell / Terminal  
+2. Wechsle in den Projektordner:
 
----
+cd "Pfad\zu\dbi"
+# Beispiel:
+# cd "C:\Users\DeinName\Desktop\Schule\WMC\dbi"
 
-## ⚙️ Installation
+Einmalig: Abhängigkeiten installieren
 
-1. Projektordner klonen oder entpacken  
-2. Im Projektverzeichnis die Abhängigkeiten installieren:
+Bashnpm install
 
-npm install
+Skript starten – fertig!
 
-Die package.json enthält folgende Pakete:
+Bashnode generateHierarchy.js
+Dauer: ca. 2–8 Sekunden
+Danach liegen im Ordner die neuen Dateien.
+Was wird erzeugt?
 
-mysql2 – für die Datenbankverbindung
+tsk_hierarchie.svg → Vektorgrafik (unendlich skalierbar, perfekt für Druck & Bearbeitung)
+tsk_hierarchie.png → Hochauflösende PNG (ideal für PowerPoint, Word, Web)
 
-@svgdotjs/svg.js – für SVG-Erzeugung
+Beide Dateien werden bei jedem Aufruf überschrieben → immer 100 % aktuell!
+Features der Grafik
 
-svgdom – SVG-Unterstützung in Node.js
+Vollautomatisches, perfekt zentriertes Layout
+Farben nach Waffengattung:
+Generalstab & Deniz Kuvvetleri → Dunkelblau
+Kara Kuvvetleri → Dunkelgrün
+Hava Kuvvetleri → Hellblau
+Sonstige → Dunkelgrau
 
-sharp – für PNG-Export
+Jede Box zeigt: Einheitsname · Typ · Kommandeur (gekürzt) · Rang (kursiv)
+Elegante Verbindungslinien mit sanfter Biegung
+Titel + aktuelles Generierungsdatum
+Moderne abgerundete Boxen – sehr professionelles Aussehen
+
+MySQL-Zugang anpassen (falls nötig)
+Öffne generateHierarchy.js und passe ggf. die Datenbankverbindung an (ca. Zeile 20):
+JavaScriptconst DB_CONFIG = {
+  host: '127.0.0.1',
+  port: 3306,
+  user: 'root',          // ← bei Bedarf ändern
+  password: '',          // ← Passwort hier eintragen
+  database: 'tuerk_streitkraefte'
+};
+
+Troubleshooting
+
+ProblemLösungCannot find module ...Im Projektordner einmal npm install ausführen
+ER_ACCESS_DENIED_ERRORPasswort in generateHierarchy.js (ca. Zeile 20) anpassen
+Unknown column ...Sicherstellen, dass die View v_einheiten_baum aktuell und vollständig ist
+Keine Ausgabe / leere GrafikPrüfen, ob Daten in v_einheiten_baum vorhanden sind
+PNG unscharfUnmöglich – sharp rendert pixelperfect aus SVG
