@@ -21,15 +21,11 @@ text## Voraussetzungen
 - Datenbank: `tuerk_streitkraefte`  
 - View: `v_einheiten_baum` mit den Spalten:  
   `einheit_id`, `name`, `typ`, `waffengattung`, `kommandeur`, `kommandeur_rang`, `uebergeordnete_einheit`, `ebene`
+1. Öffne CMD, PowerShell oder Terminal  
+2. Wechsle in den Ordner, in dem sich `generateHierarchy.js` befindet:
 
-## Installation & Start (für jeden – 100 % universell)
 
-1. Öffne CMD / PowerShell / Terminal  
-2. Wechsle in den Projektordner:
-
-cd "Pfad\zu\dbi"
-# Beispiel:
-# cd "C:\Users\DeinName\Desktop\Schule\WMC\dbi"
+cd "Pfad\zu\deinem\Projektordner"
 
 Einmalig: Abhängigkeiten installieren
 
